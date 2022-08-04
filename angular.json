@@ -3,6 +3,8 @@
   "version": 2,
   "projects": {
     "e-shop": "apps/e-shop",
-    "e-shop-e2e": "apps/e-shop-e2e"
+    "e-shop-e2e": "apps/e-shop-e2e",
+    "ecommerce-admin": "apps/ecommerce-admin",
+    "ecommerce-admin-e2e": "apps/ecommerce-admin-e2e"
   }
 }
