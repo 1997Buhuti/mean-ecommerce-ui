@@ -5,6 +5,10 @@
     "e-shop": "apps/e-shop",
     "e-shop-e2e": "apps/e-shop-e2e",
     "ecommerce-admin": "apps/ecommerce-admin",
-    "ecommerce-admin-e2e": "apps/ecommerce-admin-e2e"
+    "ecommerce-admin-e2e": "apps/ecommerce-admin-e2e",
+    "orders": "libs/orders",
+    "products": "libs/products",
+    "ui": "libs/ui",
+    "users": "libs/users"
   }
 }
