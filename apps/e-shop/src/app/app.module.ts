@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { UiModule } from '@mean-ecommerce-ui/ui';
 
 export const routes: Routes = [
   {
@@ -29,7 +30,7 @@ export const routes: Routes = [
     HeaderComponent,
     FooterComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, RouterModule.forRoot(routes), UiModule],
   providers: [],
   bootstrap: [AppComponent],
 })
