@@ -6,6 +6,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { CatogoriesTableComponent } from './categories/catogories-table/catogories-table.component';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 const routes: Routes = [
   {
@@ -15,6 +20,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+      },
+      {
+        path: 'categories',
+        component: CatogoriesTableComponent,
       },
     ],
   },
@@ -26,10 +35,15 @@ const routes: Routes = [
     DashboardComponent,
     ShellComponent,
     SidebarComponent,
+    CatogoriesTableComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
+    CardModule,
+    ToolbarModule,
+    ButtonModule,
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
