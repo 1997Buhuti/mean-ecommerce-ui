@@ -14,7 +14,12 @@
         "tsConfig": "apps/e-shop/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/e-shop/src/favicon.ico", "apps/e-shop/src/assets"],
-        "styles": ["apps/e-shop/src/styles.scss"],
+        "styles": [
+          "apps/e-shop/src/styles.scss",
+          "node_modules/primeicons/primeicons.css",
+          "node_modules/primeng/resources/themes/saga-blue/theme.css",
+          "node_modules/primeng/resources/primeng.min.css"
+        ],
         "scripts": []
       },
       "configurations": {
