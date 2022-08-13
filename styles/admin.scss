@@ -4,16 +4,18 @@
 @import './base/fonts.scss';
 @import './base/mixins.scss';
 
-//shared
+//Libraries
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/saga-blue/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeflex/primeflex.scss';
+
+//Shared
 @import './apps/admin/shell.scss';
 
-//libs
-@import './libs//ui/banner/banner.scss';
-@import './libs//ui/banner/slider.scss';
-@import './libs/products/product-item.scss';
-@import '~primeicons/primeicons.css';
-@import '~primeng/resources/primeng.min.css';
-@import '~primeflex/primeflex.css';
-@import './base/configuration.scss';
+//Libs
+// // @import './libs/products/products.scss';
+// @import './libs/orders/orders.scss';
+// @import './libs/users/users.scss';
 
 @import './base/configuration.scss';
