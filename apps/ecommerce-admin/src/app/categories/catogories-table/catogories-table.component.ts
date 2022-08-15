@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriesService, Category } from '@mean-ecommerce-ui/products';
 
 @Component({
   selector: 'mean-ecommerce-ui-catogories-table',
@@ -6,33 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./catogories-table.component.scss'],
 })
 export class CatogoriesTableComponent implements OnInit {
-  categories = [
-    {
-      id: 1,
-      name: 'Test Category 12',
-      icon: 'ico-1',
-      category: 'electronics',
-    },
-    {
-      id: 11,
-      name: 'Test Category 15',
-      icon: 'ico-1',
-      category: 'electronics',
-    },
-    {
-      id: 13,
-      name: 'Test Category 124',
-      icon: 'ico-1',
-      category: 'electronics',
-    },
-    {
-      id: 4,
-      name: 'Test Category 17',
-      icon: 'ico-1',
-      category: 'electronics',
-    },
-  ];
-  constructor() {}
+  categories: Category[] = [];
+  constructor(private categoryService: CategoriesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.categoryService.getCategories().subscribe((response) => {
+      this.categories = response;
+    });
+  }
 }
