@@ -12,6 +12,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CategoryFormComponent } from './categories/category-form/category-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -26,6 +28,10 @@ const routes: Routes = [
         path: 'categories',
         component: CatogoriesTableComponent,
       },
+      {
+        path: 'categories/form',
+        component: CategoryFormComponent,
+      },
     ],
   },
 ];
@@ -37,6 +43,7 @@ const routes: Routes = [
     ShellComponent,
     SidebarComponent,
     CatogoriesTableComponent,
+    CategoryFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +53,8 @@ const routes: Routes = [
     ToolbarModule,
     ButtonModule,
     TableModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
