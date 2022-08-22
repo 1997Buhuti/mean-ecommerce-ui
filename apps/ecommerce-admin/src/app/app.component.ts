@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'mean-ecommerce-ui-root',
+  selector: 'ecommerce-admin',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

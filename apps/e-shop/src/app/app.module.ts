@@ -12,6 +12,7 @@ import { UiModule } from '@mean-ecommerce-ui/ui';
 import { AccordionModule } from 'primeng/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
+import { CategoryFormComponent } from './categories/category-form/category-form.component';
 export const routes: Routes = [
   {
     path: '',
@@ -30,6 +31,7 @@ export const routes: Routes = [
     HomePageComponent,
     HeaderComponent,
     FooterComponent,
+    CategoryFormComponent,
   ],
   imports: [
     BrowserModule,
