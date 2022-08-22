@@ -1,4 +1,5 @@
 <div class="admin-page">
+  <p-confirmDialog header="Confirmation" width="425"></p-confirmDialog>
   <p-card header="Categories" subheader="Click here to add new category">
     <div class="p-grid">
       <div class="p-col-12">
@@ -27,6 +28,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Icon</th>
+                <th></th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-category>
@@ -34,6 +36,22 @@
                 <td>{{ category._id }}</td>
                 <td>{{ category.name }}</td>
                 <td>{{ category.icon }}</td>
+                <td>
+                  <p-button
+                    icon="pi pi-trash"
+                    styleClass="p-button-danger mr-1"
+                    (click)="deleteCategory(category._id)"
+                    pTooltip="delete"
+                    tooltipPosition="bottom"
+                  ></p-button>
+                  <p-button
+                    icon="pi pi-pencil"
+                    styleClass="p-button-warning ml-1"
+                    (click)="updateCategory(category._id)"
+                    pTooltip="edit"
+                    tooltipPosition="bottom"
+                  ></p-button>
+                </td>
               </tr>
             </ng-template>
           </p-table>
@@ -41,5 +59,4 @@
       </div>
     </div>
   </p-card>
-  <h5>Basic</h5>
 </div>

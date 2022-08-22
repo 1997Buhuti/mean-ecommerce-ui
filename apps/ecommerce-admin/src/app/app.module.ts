@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,6 +15,10 @@ import { TableModule } from 'primeng/table';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CategoryFormComponent } from './categories/category-form/category-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { TooltipModule } from 'primeng/tooltip';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 const routes: Routes = [
   {
@@ -32,6 +37,10 @@ const routes: Routes = [
         path: 'categories/form',
         component: CategoryFormComponent,
       },
+      {
+        path: 'categories/form/:id',
+        component: CategoryFormComponent,
+      },
     ],
   },
 ];
@@ -47,6 +56,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
     HttpClientModule,
     CardModule,
@@ -55,8 +65,11 @@ const routes: Routes = [
     TableModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastModule,
+    TooltipModule,
+    ConfirmDialogModule,
   ],
-  providers: [],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
