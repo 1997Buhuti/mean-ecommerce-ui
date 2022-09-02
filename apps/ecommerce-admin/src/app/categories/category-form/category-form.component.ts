@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CategoryFormComponent implements OnInit {
   form!: FormGroup;
   editMode: boolean = false;
+  currenCategoryId!: string;
   isSubmitClicked: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
@@ -38,10 +39,45 @@ export class CategoryFormComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitClicked = true;
     const category: Category = {
+      id: this.currenCategoryId,
       name: this.form.value.name,
       icon: this.form.value.icon,
     };
 
+    if (this.editMode) {
+      this.updateCategory(category);
+    } else {
+      this.addCategory(category);
+    }
+  }
+
+  private updateCategory(category: Category) {
+    this.categoryService.updateCategory(category).subscribe(
+      (response) => {
+        if (response) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Service Message',
+            detail: 'Category Updated',
+          });
+          timer(2000)
+            .toPromise()
+            .then(() => {
+              this.router.navigate(['categories']);
+            });
+        }
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Service Error',
+          detail: 'Category Not Added',
+        });
+      }
+    );
+  }
+
+  private addCategory(category: Category) {
     this.categoryService.createCategory(category).subscribe(
       (response) => {
         if (response) {
@@ -66,12 +102,12 @@ export class CategoryFormComponent implements OnInit {
       }
     );
   }
-
   private _editMode() {
     this.route.params.subscribe((params) => {
       console.log(params);
       //@ts-ignore
       const categoryId = params.id;
+      this.currenCategoryId = categoryId;
       if (categoryId) {
         this.editMode = true;
         this.categoryService.getCategory(categoryId).subscribe((category) => {
