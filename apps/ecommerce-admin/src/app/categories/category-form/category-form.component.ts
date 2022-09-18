@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CategoryFormComponent implements OnInit {
   form!: FormGroup;
   editMode: boolean = false;
-  currenCategoryId!: string;
+  currentCategoryId!: string;
   isSubmitClicked: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
@@ -39,11 +39,11 @@ export class CategoryFormComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitClicked = true;
     const category: Category = {
-      id: this.currenCategoryId,
+      id: this.currentCategoryId,
       name: this.form.value.name,
       icon: this.form.value.icon,
     };
-
+    console.log(category);
     if (this.editMode) {
       this.updateCategory(category);
     } else {
@@ -52,29 +52,32 @@ export class CategoryFormComponent implements OnInit {
   }
 
   private updateCategory(category: Category) {
-    this.categoryService.updateCategory(category).subscribe(
-      (response) => {
-        if (response) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Service Message',
-            detail: 'Category Updated',
-          });
-          timer(2000)
-            .toPromise()
-            .then(() => {
-              this.router.navigate(['categories']);
+    console.log(this.currentCategoryId);
+    this.categoryService
+      .updateCategory(category)
+      .subscribe(
+        (response) => {
+          if (response) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Service Message',
+              detail: 'Category Updated',
             });
+            timer(2000)
+              .toPromise()
+              .then(() => {
+                this.router.navigate(['categories']);
+              });
+          }
+        },
+        (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Service Error',
+            detail: 'Category Not Added',
+          });
         }
-      },
-      (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Service Error',
-          detail: 'Category Not Added',
-        });
-      }
-    );
+      );
   }
 
   private addCategory(category: Category) {
@@ -107,7 +110,8 @@ export class CategoryFormComponent implements OnInit {
       console.log(params);
       //@ts-ignore
       const categoryId = params.id;
-      this.currenCategoryId = categoryId;
+      this.currentCategoryId = categoryId;
+      console.log(this.currentCategoryId);
       if (categoryId) {
         this.editMode = true;
         this.categoryService.getCategory(categoryId).subscribe((category) => {
