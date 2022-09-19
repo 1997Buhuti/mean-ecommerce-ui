@@ -13,7 +13,7 @@ export class CategoriesService {
   }
 
   getCategory(categoryId: string) {
-    return this.http.get<Category[]>(
+    return this.http.get<Category>(
       `http://localhost:3000/api/v1/categories/${categoryId}`
     );
   }

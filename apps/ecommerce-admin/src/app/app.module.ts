@@ -19,6 +19,10 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 const routes: Routes = [
   {
@@ -68,8 +72,14 @@ const routes: Routes = [
     ToastModule,
     TooltipModule,
     ConfirmDialogModule,
+    ColorPickerModule,
+    FontAwesomeModule,
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    library.add(fas);
+  }
+}

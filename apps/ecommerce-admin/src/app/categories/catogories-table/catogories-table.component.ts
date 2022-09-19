@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService, Category } from '@mean-ecommerce-ui/products';
 import { Router } from '@angular/router';
-import { ConfirmEventType, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'mean-ecommerce-ui-catogories-table',

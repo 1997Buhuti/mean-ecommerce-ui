@@ -59,6 +59,16 @@
                     >icon is not available.</small
                   >
                 </div>
+                <div class="field col-12 md:col-6">
+                  <label for="lastname6">Color</label><br />
+                  <p-colorPicker formControlName="color"></p-colorPicker>
+                  <small
+                    *ngIf="isSubmitClicked && !this.form.value.icon"
+                    id="username2-help"
+                    class="p-error block"
+                    >Color is not available.</small
+                  >
+                </div>
               </div>
             </form>
           </div>
