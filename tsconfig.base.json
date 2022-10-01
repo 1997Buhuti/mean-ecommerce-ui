@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@env/*": ["environment/*"],
       "@mean-ecommerce-ui/orders": ["libs/orders/src/index.ts"],
       "@mean-ecommerce-ui/products": ["libs/products/src/index.ts"],
       "@mean-ecommerce-ui/ui": ["libs/ui/src/index.ts"],
-      "@mean-ecommerce-ui/users": ["libs/users/src/index.ts"],
-      "@env/*": ["environment/*"]
+      "@mean-ecommerce-ui/users": ["libs/users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

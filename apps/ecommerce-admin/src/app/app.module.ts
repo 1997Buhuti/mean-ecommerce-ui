@@ -23,6 +23,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { ProductListComponent } from './pages/products/product-list/product-list.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,7 @@ const routes: Routes = [
     SidebarComponent,
     CatogoriesTableComponent,
     CategoryFormComponent,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,
