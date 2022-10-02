@@ -1,0 +1,202 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card
+    [header]="editMode ? 'updateProduct' : 'Add Product'"
+    subheader="Click here to add new category"
+  >
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-right">
+            <p-button
+              [label]="editMode ? 'Update' : 'Create'"
+              icon="pi pi-plus"
+              styleClass="p-button-success mr-1"
+            ></p-button>
+            <p-button
+              label="Cancel"
+              icon="pi pi-arrow-circle-left"
+              styleClass="p-button-secondary ml-1"
+              routerLink="form"
+            ></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+      <div class="grid">
+        <div class="col-12">
+          <div class="card">
+            <form [formGroup]="productForm">
+              <div class="formgrid grid mt-2">
+                <div class="field col-12 md:col-4">
+                  <label for="firstname6">Name</label>
+                  <input
+                    formControlName="name"
+                    id="firstname6"
+                    type="text"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                  <small
+                    *ngIf="isSubmitClicked && !productForm.value.name"
+                    id="username2-help"
+                    class="p-error block"
+                    >name is not available.</small
+                  >
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label for="lastname6">Brand</label>
+                  <input
+                    formControlName="brand"
+                    type="text"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                  <small
+                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    id="username2-help"
+                    class="p-error block"
+                    >brand is not available.</small
+                  >
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label for="lastname6">Price</label><br />
+                  <p-inputNumber
+                    formControlName="price"
+                    mode="decimal"
+                    class="border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"
+                    [minFractionDigits]="2"
+                    [maxFractionDigits]="5"
+                    class="block w-full line-height-3 text-base h-3rem"
+                    [style]="{ width: '100%' }"
+                  ></p-inputNumber>
+                  <small
+                    *ngIf="isSubmitClicked && !productForm.value.price"
+                    id="username2-help"
+                    class="p-error block"
+                    >Price is not available.</small
+                  >
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label for="category">category</label><br />
+                  <p-dropdown
+                    [options]="categories"
+                    formControlName="category"
+                    optionLabel="name"
+                    optionValue="id"
+                    [showClear]="true"
+                    placeholder="Select a Category"
+                    class="block w-full line-height-1.5 text-base h-3rem"
+                    [style]="{ width: '100%' }"
+                  ></p-dropdown>
+
+                  <br /><small
+                    *ngIf="!productForm.value.Category"
+                    class="p-error"
+                    >Category is required</small
+                  >
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label for="lastname6">Count-In-Stocks</label>
+                  <input
+                    formControlName="countInStocks"
+                    type="text"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                  <small
+                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    id="countInStocks-help"
+                    class="p-error block"
+                    >countInStocks is not available.</small
+                  >
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label for="lastname6">Description</label>
+                  <input
+                    formControlName="richDescription"
+                    type="text"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                  <small
+                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    id="username2-help"
+                    class="p-error block"
+                    >Description is not available.</small
+                  >
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label for="lastname6">Rich Description</label>
+                  <p-editor
+                    formControlName="richDescription"
+                    [style]="{ height: '320px' }"
+                  >
+                    <ng-template pTemplate="header">
+                      <span class="ql-format-group">
+                        <span
+                          title="Bold"
+                          class="ql-format-button ql-bold"
+                        ></span>
+                        <span class="ql-format-separator"></span>
+                        <span
+                          title="Italic"
+                          class="ql-format-button ql-italic"
+                        ></span>
+                        <span class="ql-format-separator"></span>
+                        <span
+                          title="Underline"
+                          class="ql-format-button ql-underline"
+                        ></span>
+                        <span class="ql-format-separator"></span>
+                        <span
+                          title="Strikethrough"
+                          class="ql-format-button ql-strike"
+                        ></span>
+                      </span>
+                    </ng-template>
+                  </p-editor>
+                  <small
+                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    id="countInStocks-help"
+                    class="p-error block"
+                    >Rich Description is not available.</small
+                  >
+                </div>
+                <div class="field col-4">
+                  <label for="lastname6">Image</label>
+                  <p-fileUpload
+                    name="myfile[]"
+                    url=""
+                    [maxFileSize]="1000000"
+                    (onUpload)="onUpload($event)"
+                    styleClass="cfn-uploader"
+                  >
+                    <ng-template pTemplate="content">
+                      <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">
+                          {{ file.name }}
+                        </li>
+                      </ul>
+                    </ng-template>
+                  </p-fileUpload>
+                  <small
+                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    id="username2-help"
+                    class="p-error block"
+                    >isFeatured is not available.</small
+                  >
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label for="lastname6">Is Featured</label><br />
+                  <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
+                  <small
+                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    id="username2-help"
+                    class="p-error block"
+                    >isFeatured is not available.</small
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-card>
+</div>

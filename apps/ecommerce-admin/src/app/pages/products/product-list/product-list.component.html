@@ -1,1 +1,89 @@
-<p>product-list works!</p>
+<div class="admin-page">
+  <p-confirmDialog header="Confirmation" width="425"></p-confirmDialog>
+  <p-card header="products" subheader="Click here to add new product">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-right">
+            <p-button
+              label="Create"
+              icon="pi pi-plus"
+              styleClass="p-button-success mr-1"
+              routerLink="form"
+            ></p-button>
+            <p-button
+              label="Cancel"
+              icon="pi pi-arrow-circle-left"
+              styleClass="p-button-secondary ml-1"
+              routerLink="form"
+            ></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <p-table [value]="products" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="name">
+                  Name <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="icon">
+                  Image <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="color">
+                  Price <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="color">
+                  Stock <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="color">
+                  Category <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="color">
+                  CreatedAt <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+              <tr>
+                <td>{{ product.name }}</td>
+                <td>
+                  <p-image
+                    [src]="product.image"
+                    alt="productImages"
+                    width="150"
+                    height="150"
+                    [preview]="true"
+                  ></p-image>
+                </td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>{{ product.category.name }}</td>
+                <td>{{ product.dateCreated | date: 'short' }}</td>
+
+                <td>
+                  <p-button
+                    icon="pi pi-trash"
+                    styleClass="p-button-danger mr-1"
+                    (click)="deleteProduct(product._id)"
+                    pTooltip="delete"
+                    tooltipPosition="bottom"
+                  ></p-button>
+                  <p-button
+                    icon="pi pi-pencil"
+                    styleClass="p-button-warning ml-1"
+                    (click)="updateProduct(product._id)"
+                    pTooltip="edit"
+                    tooltipPosition="bottom"
+                  ></p-button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </p-card>
+</div>

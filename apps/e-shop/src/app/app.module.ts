@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { ProductListComponent } from './pages/product-list/product-list.component';
+import { ProductListComponent } from './pages/products/product-list/product-list.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
@@ -12,6 +12,7 @@ import { UiModule } from '@mean-ecommerce-ui/ui';
 import { AccordionModule } from 'primeng/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
+import { ProductFormComponent } from './pages/products/product-form/product-form.component';
 export const routes: Routes = [
   {
     path: '',
@@ -30,6 +31,7 @@ export const routes: Routes = [
     HomePageComponent,
     HeaderComponent,
     FooterComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
