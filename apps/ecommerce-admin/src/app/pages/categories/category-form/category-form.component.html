@@ -1,0 +1,79 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card
+    [header]="editMode ? 'updateCategory' : 'Add Category'"
+    subheader="Click here to add new category"
+  >
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-right">
+            <p-button
+              [label]="editMode ? 'Update' : 'Create'"
+              icon="pi pi-plus"
+              styleClass="p-button-success mr-1"
+              (click)="onSubmit()"
+            ></p-button>
+            <p-button
+              label="Cancel"
+              icon="pi pi-arrow-circle-left"
+              styleClass="p-button-secondary ml-1"
+              routerLink="form"
+              (click)="onCancelBtnClicked()"
+            ></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+      <div class="grid">
+        <div class="col-12">
+          <div class="card">
+            <form [formGroup]="form">
+              <div class="formgrid grid mt-2">
+                <div class="field col-12 md:col-6">
+                  <label for="firstname6">Name</label>
+                  <input
+                    formControlName="name"
+                    id="firstname6"
+                    type="text"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                  <small
+                    *ngIf="isSubmitClicked && !this.form.value.name"
+                    id="username2-help"
+                    class="p-error block"
+                    >name is not available.</small
+                  >
+                </div>
+                <div class="field col-12 md:col-6">
+                  <label for="lastname6">Icon</label>
+                  <input
+                    formControlName="icon"
+                    id="lastname6"
+                    type="text"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                  <small
+                    *ngIf="isSubmitClicked && !this.form.value.icon"
+                    id="username2-help"
+                    class="p-error block"
+                    >icon is not available.</small
+                  >
+                </div>
+                <div class="field col-12 md:col-6">
+                  <label for="lastname6">Color</label><br />
+                  <p-colorPicker formControlName="color"></p-colorPicker>
+                  <small
+                    *ngIf="isSubmitClicked && !this.form.value.icon"
+                    id="username2-help"
+                    class="p-error block"
+                    >Color is not available.</small
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-card>
+</div>

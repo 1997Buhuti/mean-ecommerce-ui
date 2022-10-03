@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@env/*": ["environment/*"],
       "@mean-ecommerce-ui/orders": ["libs/orders/src/index.ts"],
       "@mean-ecommerce-ui/products": ["libs/products/src/index.ts"],
       "@mean-ecommerce-ui/ui": ["libs/ui/src/index.ts"],
