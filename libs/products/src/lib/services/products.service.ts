@@ -16,6 +16,9 @@ export class ProductsService {
     catchError(this.handleError)
   );
 
+  createProduct(product: FormData): Observable<Products> {
+    return this.http.post<Products>(this.apiURLProducts, product);
+  }
   private handleError(err: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console

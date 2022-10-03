@@ -19,8 +19,8 @@
         ],
         "styles": [
           "apps/ecommerce-admin/src/styles.scss",
-          "../node_modules/quill/dist/quill.core.css",
-          "../node_modules/quill/dist/quill.snow.css"
+          "node_modules/quill/dist/quill.core.css",
+          "node_modules/quill/dist/quill.snow.css"
         ],
         "scripts": ["node_modules/quill/dist/quill.js"]
       },

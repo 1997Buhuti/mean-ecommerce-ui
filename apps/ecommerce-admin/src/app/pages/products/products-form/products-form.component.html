@@ -12,6 +12,7 @@
               [label]="editMode ? 'Update' : 'Create'"
               icon="pi pi-plus"
               styleClass="p-button-success mr-1"
+              (click)="onSubmit()"
             ></p-button>
             <p-button
               label="Cancel"
@@ -75,20 +76,20 @@
                   >
                 </div>
                 <div class="field col-12 md:col-4">
-                  <label for="category">category</label><br />
+                  <label for="category">Category</label><br />
                   <p-dropdown
                     [options]="categories"
                     formControlName="category"
+                    (onChange)="onChange($event)"
                     optionLabel="name"
                     optionValue="id"
                     [showClear]="true"
                     placeholder="Select a Category"
                     class="block w-full line-height-1.5 text-base h-3rem"
                     [style]="{ width: '100%' }"
-                  ></p-dropdown>
-
-                  <br /><small
-                    *ngIf="!productForm.value.Category"
+                  ></p-dropdown
+                  ><small
+                    *ngIf="isSubmitClicked && !productForm.value.category"
                     class="p-error"
                     >Category is required</small
                   >
@@ -108,12 +109,26 @@
                   >
                 </div>
                 <div class="field col-12 md:col-4">
+                  <label for="lastname6">Is Featured</label><br />
+                  <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
+                  <small
+                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    id="username2-help"
+                    class="p-error block"
+                    >isFeatured is not available.</small
+                  >
+                </div>
+                <div class="field col-12">
                   <label for="lastname6">Description</label>
-                  <input
-                    formControlName="richDescription"
-                    type="text"
-                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                  />
+                  <textarea
+                    formControlName="description"
+                    [rows]="5"
+                    [cols]="30"
+                    pInputTextarea
+                    [autoResize]="true"
+                    class="block w-full"
+                    [style]="{ width: '100%' }"
+                  ></textarea>
                   <small
                     *ngIf="isSubmitClicked && !productForm.value.brand"
                     id="username2-help"
@@ -121,36 +136,12 @@
                     >Description is not available.</small
                   >
                 </div>
-                <div class="field col-12 md:col-4">
+                <div class="field col-12">
                   <label for="lastname6">Rich Description</label>
                   <p-editor
                     formControlName="richDescription"
                     [style]="{ height: '320px' }"
-                  >
-                    <ng-template pTemplate="header">
-                      <span class="ql-format-group">
-                        <span
-                          title="Bold"
-                          class="ql-format-button ql-bold"
-                        ></span>
-                        <span class="ql-format-separator"></span>
-                        <span
-                          title="Italic"
-                          class="ql-format-button ql-italic"
-                        ></span>
-                        <span class="ql-format-separator"></span>
-                        <span
-                          title="Underline"
-                          class="ql-format-button ql-underline"
-                        ></span>
-                        <span class="ql-format-separator"></span>
-                        <span
-                          title="Strikethrough"
-                          class="ql-format-button ql-strike"
-                        ></span>
-                      </span>
-                    </ng-template>
-                  </p-editor>
+                  ></p-editor>
                   <small
                     *ngIf="isSubmitClicked && !productForm.value.brand"
                     id="countInStocks-help"
@@ -158,7 +149,7 @@
                     >Rich Description is not available.</small
                   >
                 </div>
-                <div class="field col-4">
+                <div class="field col-12">
                   <label for="lastname6">Image</label>
                   <p-fileUpload
                     name="myfile[]"
@@ -179,17 +170,7 @@
                     *ngIf="isSubmitClicked && !productForm.value.brand"
                     id="username2-help"
                     class="p-error block"
-                    >isFeatured is not available.</small
-                  >
-                </div>
-                <div class="field col-12 md:col-4">
-                  <label for="lastname6">Is Featured</label><br />
-                  <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
-                  <small
-                    *ngIf="isSubmitClicked && !productForm.value.brand"
-                    id="username2-help"
-                    class="p-error block"
-                    >isFeatured is not available.</small
+                    >product Image is not available.</small
                   >
                 </div>
               </div>
