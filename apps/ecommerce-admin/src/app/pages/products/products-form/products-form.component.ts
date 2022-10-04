@@ -33,13 +33,14 @@ export class ProductsFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.getCategories();
+    console.log(this.productForm);
   }
   private initForm() {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
       brand: ['', Validators.required],
       price: ['', Validators.required],
-      category: ['', Validators.required],
+      category: [null, Validators.required],
       countInStocks: ['', Validators.required],
       description: ['', Validators.required],
       richDescription: ['', Validators.required],
@@ -69,10 +70,16 @@ export class ProductsFormComponent implements OnInit {
     if (this.productForm.invalid) return;
 
     const productFormData: FormData = new FormData();
-
-    Object.keys(this.productForm).map((key) => {
+    for (let i = 0; i < this.productForm.value.length; i++) {
       //@ts-ignore
-      productFormData.append(key, this.productForm[key].value);
+      console.log(this.productForm.value[key].value);
+    }
+
+    Object.keys(this.productForm.value).map((key) => {
+      console.log(key);
+      //@ts-ignore
+      console.log(this.productForm.value.key);
+      // productFormData.append(key, this.productForm[key].value);
     });
   }
 
@@ -87,7 +94,6 @@ export class ProductsFormComponent implements OnInit {
   }
 
   onChange(op: any) {
-    console.log(op);
     console.log(this.productForm.value.category);
   }
 

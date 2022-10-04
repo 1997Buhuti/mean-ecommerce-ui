@@ -80,12 +80,10 @@
                   <p-dropdown
                     [options]="categories"
                     formControlName="category"
-                    (onChange)="onChange($event)"
+                    (ngModelChange)="onChange($event)"
                     optionLabel="name"
-                    optionValue="id"
                     [showClear]="true"
                     placeholder="Select a Category"
-                    class="block w-full line-height-1.5 text-base h-3rem"
                     [style]="{ width: '100%' }"
                   ></p-dropdown
                   ><small
@@ -102,7 +100,7 @@
                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                   />
                   <small
-                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    *ngIf="isSubmitClicked && !productForm.value.countInStocks"
                     id="countInStocks-help"
                     class="p-error block"
                     >countInStocks is not available.</small
@@ -112,7 +110,7 @@
                   <label for="lastname6">Is Featured</label><br />
                   <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
                   <small
-                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    *ngIf="isSubmitClicked && !productForm.value.isFeatured"
                     id="username2-help"
                     class="p-error block"
                     >isFeatured is not available.</small
@@ -130,7 +128,7 @@
                     [style]="{ width: '100%' }"
                   ></textarea>
                   <small
-                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    *ngIf="isSubmitClicked && !productForm.value.description"
                     id="username2-help"
                     class="p-error block"
                     >Description is not available.</small
@@ -143,7 +141,9 @@
                     [style]="{ height: '320px' }"
                   ></p-editor>
                   <small
-                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    *ngIf="
+                      isSubmitClicked && !productForm.value.richDescription
+                    "
                     id="countInStocks-help"
                     class="p-error block"
                     >Rich Description is not available.</small
@@ -167,7 +167,7 @@
                     </ng-template>
                   </p-fileUpload>
                   <small
-                    *ngIf="isSubmitClicked && !productForm.value.brand"
+                    *ngIf="isSubmitClicked && !productForm.value.image"
                     id="username2-help"
                     class="p-error block"
                     >product Image is not available.</small
