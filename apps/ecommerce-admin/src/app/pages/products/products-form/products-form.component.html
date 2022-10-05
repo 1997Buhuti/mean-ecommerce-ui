@@ -152,10 +152,10 @@
                 <div class="field col-12">
                   <label for="lastname6">Image</label>
                   <p-fileUpload
-                    name="myfile[]"
-                    url=""
+                    #fileUpload
+                    [customUpload]="true"
                     [maxFileSize]="1000000"
-                    (onUpload)="onUpload($event)"
+                    (uploadHandler)="onUpload($event)"
                     styleClass="cfn-uploader"
                   >
                     <ng-template pTemplate="content">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -7,6 +7,7 @@ import {
   ProductsService,
 } from '@mean-ecommerce-ui/products';
 import { MessageService } from 'primeng/api';
+import { FileUpload } from 'primeng/fileupload';
 import { timer } from 'rxjs';
 
 @Component({
@@ -15,6 +16,9 @@ import { timer } from 'rxjs';
   styleUrls: ['./products-form.component.scss'],
 })
 export class ProductsFormComponent implements OnInit {
+  @ViewChild('fileUpload')
+  fileUpload!: FileUpload;
+
   editMode: boolean = false;
   productForm!: FormGroup;
   isSubmitClicked: boolean = false;
@@ -53,11 +57,12 @@ export class ProductsFormComponent implements OnInit {
     ];
   }
 
-  onUpload(event: { files: any }) {
+  onUpload(event: any) {
+    console.log(event);
     for (let file of event.files) {
-      this.uploadedFiles.push(file);
+      this.productForm.patchValue({ image: file });
+      this.productForm.get('image')?.updateValueAndValidity();
     }
-
     this.messageService.add({
       severity: 'info',
       summary: 'File Uploaded',
@@ -65,22 +70,20 @@ export class ProductsFormComponent implements OnInit {
     });
   }
 
+  save() {
+    this.fileUpload.upload();
+    console.log(this.productForm.value.myFile);
+  }
+
   onSubmit() {
     this.isSubmitClicked = true;
     if (this.productForm.invalid) return;
-
     const productFormData: FormData = new FormData();
-    for (let i = 0; i < this.productForm.value.length; i++) {
+    Object.keys(this.productForm.value).forEach((key, index) => {
       //@ts-ignore
-      console.log(this.productForm.value[key].value);
-    }
-
-    Object.keys(this.productForm.value).map((key) => {
-      console.log(key);
-      //@ts-ignore
-      console.log(this.productForm.value.key);
-      // productFormData.append(key, this.productForm[key].value);
+      productFormData.append(key, this.productForm.value[key]);
     });
+    this.addProduct(productFormData);
   }
 
   get productFormControls() {
