@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Products, ProductsService } from '@mean-ecommerce-ui/products';
 import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
 
@@ -10,7 +11,10 @@ import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
 export class ProductListComponent implements OnInit {
   errorMessage: any;
   destroy$ = new Subject<boolean>();
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    private router: Router
+  ) {}
   product$ = this.productsService.product$.pipe(
     catchError((err) => {
       this.errorMessage = err;
@@ -26,7 +30,9 @@ export class ProductListComponent implements OnInit {
 
   deleteProduct(productId: string) {}
 
-  updateProduct(productId: string) {}
+  updateProduct(productId: string) {
+    this.router.navigate([`products/form/${productId}`]);
+  }
 
   private getProducts() {}
 }

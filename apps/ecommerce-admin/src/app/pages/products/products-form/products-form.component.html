@@ -2,7 +2,11 @@
 <div class="admin-page">
   <p-card
     [header]="editMode ? 'updateProduct' : 'Add Product'"
-    subheader="Click here to add new category"
+    [subheader]="
+      editMode
+        ? 'Click here to update new category'
+        : 'Click here to add new category'
+    "
   >
     <div class="p-grid">
       <div class="p-col-12">
@@ -19,6 +23,7 @@
               icon="pi pi-arrow-circle-left"
               styleClass="p-button-secondary ml-1"
               routerLink="form"
+              (click)="onCancelBtnClicked()"
             ></p-button>
           </div>
         </p-toolbar>
@@ -95,13 +100,13 @@
                 <div class="field col-12 md:col-4">
                   <label for="lastname6">Count-In-Stocks</label>
                   <input
-                    formControlName="countInStocks"
+                    formControlName="countInStock"
                     type="text"
                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                   />
                   <small
-                    *ngIf="isSubmitClicked && !productForm.value.countInStocks"
-                    id="countInStocks-help"
+                    *ngIf="isSubmitClicked && !productForm.value.countInStock"
+                    id="countInStock-help"
                     class="p-error block"
                     >countInStocks is not available.</small
                   >
@@ -149,30 +154,55 @@
                     >Rich Description is not available.</small
                   >
                 </div>
-                <div class="field col-12">
-                  <label for="lastname6">Image</label>
-                  <p-fileUpload
-                    #fileUpload
-                    [customUpload]="true"
-                    [maxFileSize]="1000000"
-                    (uploadHandler)="onUpload($event)"
-                    styleClass="cfn-uploader"
-                  >
-                    <ng-template pTemplate="content">
-                      <ul *ngIf="uploadedFiles.length">
-                        <li *ngFor="let file of uploadedFiles">
-                          {{ file.name }}
-                        </li>
-                      </ul>
-                    </ng-template>
-                  </p-fileUpload>
-                  <small
-                    *ngIf="isSubmitClicked && !productForm.value.image"
-                    id="username2-help"
-                    class="p-error block"
-                    >product Image is not available.</small
-                  >
-                </div>
+                <ng-container *ngIf="!isImageEditClicked; else editableImage">
+                  <div class="field col-12">
+                    <label for="lastname6">Image</label>
+                    <p-fileUpload
+                      #fileUpload
+                      [customUpload]="true"
+                      [maxFileSize]="1000000"
+                      (uploadHandler)="onUpload($event)"
+                      styleClass="cfn-uploader"
+                    >
+                      <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                          <li *ngFor="let file of uploadedFiles">
+                            {{ file.name }}
+                          </li>
+                        </ul>
+                      </ng-template>
+                    </p-fileUpload>
+                    <small
+                      *ngIf="isSubmitClicked && !productForm.value.image"
+                      id="username2-help"
+                      class="p-error block"
+                      >product Image is not available.</small
+                    >
+                  </div>
+                </ng-container>
+                <ng-template #editableImage>
+                  <div class="field col-12">
+                    <label for="lastname6">Image</label><br />
+                    <div class="grid grid-nogutter">
+                      <div class="col-12">
+                        <p-image
+                          alt="Card"
+                          [src]="currentProductImage"
+                          width="250"
+                          [preview]="true"
+                        >
+                        </p-image>
+                      </div>
+                      <div class="col-12 mt-3">
+                        <p-button
+                          label="Edit Image"
+                          icon="pi pi-pencil"
+                          (onClick)="onImageEditClicked()"
+                        ></p-button>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
               </div>
             </form>
           </div>

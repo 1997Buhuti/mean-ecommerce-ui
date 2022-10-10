@@ -25,6 +25,10 @@ export class ProductsFormComponent implements OnInit {
   stateOptions!: any[];
   categories!: any[];
   uploadedFiles: any = [];
+  currentProductId!: string;
+  currentProductImage!: string;
+  isImageEditClicked: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductsService,
@@ -37,7 +41,7 @@ export class ProductsFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.getCategories();
-    console.log(this.productForm);
+    this._editMode();
   }
   private initForm() {
     this.productForm = this.formBuilder.group({
@@ -45,7 +49,7 @@ export class ProductsFormComponent implements OnInit {
       brand: ['', Validators.required],
       price: ['', Validators.required],
       category: [null, Validators.required],
-      countInStocks: ['', Validators.required],
+      countInStock: ['', Validators.required],
       description: ['', Validators.required],
       richDescription: ['', Validators.required],
       image: [''],
@@ -55,6 +59,10 @@ export class ProductsFormComponent implements OnInit {
       { label: 'Yes', value: true },
       { label: 'No', value: false },
     ];
+  }
+
+  onCancelBtnClicked(): void {
+    this.router.navigate(['/products']);
   }
 
   onUpload(event: any) {
@@ -77,6 +85,8 @@ export class ProductsFormComponent implements OnInit {
 
   onSubmit() {
     this.isSubmitClicked = true;
+    this.productForm.value.category = this.productForm.value?.category._id;
+    console.log(this.productForm.value);
     if (this.productForm.invalid) return;
     const productFormData: FormData = new FormData();
     Object.keys(this.productForm.value).forEach((key, index) => {
@@ -124,5 +134,42 @@ export class ProductsFormComponent implements OnInit {
         });
       }
     );
+  }
+
+  private _editMode() {
+    this.route.params.subscribe((params) => {
+      console.log(params);
+      this.isImageEditClicked = true;
+      //@ts-ignore
+      const productId = params.id;
+      this.currentProductId = productId;
+      console.log(this.currentProductId);
+      if (productId) {
+        this.editMode = true;
+        this.productService.getProduct(productId).subscribe((product) => {
+          this.productForm.patchValue({
+            name: product.name,
+            brand: product.brand,
+            price: product.price,
+            category: product.category,
+            countInStock: product.countInStock,
+            description: product.description,
+            richDescription: product.richDescription,
+            isFeatured: product.isFeatured,
+          });
+          console.log(product.image);
+          console.log(product.name);
+          this.currentProductImage = product.image;
+        });
+      }
+    });
+  }
+
+  onImageEditClicked() {
+    if (this.editMode) {
+      this.isImageEditClicked = false;
+    } else {
+      this.isImageEditClicked = true;
+    }
   }
 }
