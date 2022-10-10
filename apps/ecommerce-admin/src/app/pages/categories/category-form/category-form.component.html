@@ -1,8 +1,12 @@
 <p-toast></p-toast>
 <div class="admin-page">
   <p-card
-    [header]="editMode ? 'updateCategory' : 'Add Category'"
-    subheader="Click here to add new category"
+    [header]="editMode ? 'update Category' : 'Add Category'"
+    [subheader]="
+      editMode
+        ? 'Click here to update new category'
+        : 'Click here to add new category'
+    "
   >
     <div class="p-grid">
       <div class="p-col-12">

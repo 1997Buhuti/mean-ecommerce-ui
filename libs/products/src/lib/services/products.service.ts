@@ -16,6 +16,13 @@ export class ProductsService {
     catchError(this.handleError)
   );
 
+  getProduct(productId: string): Observable<Products> {
+    return this.http.get<Products>(`${this.apiURLProducts}/${productId}`).pipe(
+      tap((data) => console.log('categories', JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
   createProduct(product: FormData): Observable<Products> {
     return this.http.post<Products>(this.apiURLProducts, product);
   }
