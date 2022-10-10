@@ -22,7 +22,12 @@
       </div>
       <div class="p-grid">
         <div class="p-col-12">
-          <p-table [value]="products" responsiveLayout="scroll">
+          <p-table
+            [value]="products"
+            [paginator]="true"
+            [rows]="10"
+            responsiveLayout="scroll"
+          >
             <ng-template pTemplate="header">
               <tr>
                 <th pSortableColumn="name">

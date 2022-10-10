@@ -66,7 +66,6 @@ export class ProductsFormComponent implements OnInit {
   }
 
   onUpload(event: any) {
-    console.log(event);
     for (let file of event.files) {
       this.productForm.patchValue({ image: file });
       this.productForm.get('image')?.updateValueAndValidity();
@@ -80,7 +79,6 @@ export class ProductsFormComponent implements OnInit {
 
   save() {
     this.fileUpload.upload();
-    console.log(this.productForm.value.myFile);
   }
 
   onSubmit() {
@@ -93,7 +91,11 @@ export class ProductsFormComponent implements OnInit {
       //@ts-ignore
       productFormData.append(key, this.productForm.value[key]);
     });
-    this.addProduct(productFormData);
+    if (this.editMode) {
+      this.updateProduct(productFormData);
+    } else {
+      this.addProduct(productFormData);
+    }
   }
 
   get productFormControls() {
@@ -143,7 +145,6 @@ export class ProductsFormComponent implements OnInit {
       //@ts-ignore
       const productId = params.id;
       this.currentProductId = productId;
-      console.log(this.currentProductId);
       if (productId) {
         this.editMode = true;
         this.productService.getProduct(productId).subscribe((product) => {
@@ -157,12 +158,42 @@ export class ProductsFormComponent implements OnInit {
             richDescription: product.richDescription,
             isFeatured: product.isFeatured,
           });
-          console.log(product.image);
-          console.log(product.name);
           this.currentProductImage = product.image;
         });
       }
     });
+  }
+
+  private updateProduct(productFormData: FormData) {
+    console.log('Inside updateProduct');
+    if (this.currentProductId) {
+      console.log('this.productService.updateProduct');
+      this.productService
+        .updateProduct(productFormData, this.currentProductId)
+        .subscribe(
+          (response) => {
+            if (response) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Service Message',
+                detail: 'Product Updated',
+              });
+              timer(2000)
+                .toPromise()
+                .then(() => {
+                  this.router.navigate(['products']);
+                });
+            }
+          },
+          (error) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Service Error',
+              detail: 'Product Not Added',
+            });
+          }
+        );
+    }
   }
 
   onImageEditClicked() {

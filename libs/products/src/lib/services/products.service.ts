@@ -26,6 +26,17 @@ export class ProductsService {
   createProduct(product: FormData): Observable<Products> {
     return this.http.post<Products>(this.apiURLProducts, product);
   }
+
+  updateProduct(product: FormData, productId: string): Observable<Products> {
+    console.log('updateProduct');
+    return this.http.put<Products>(
+      `${this.apiURLProducts}/${productId}`,
+      product
+    );
+  }
+  deleteCProduct(productId: string): Observable<Object> {
+    return this.http.delete<any>(`${this.apiURLProducts}/${productId}`);
+  }
   private handleError(err: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
