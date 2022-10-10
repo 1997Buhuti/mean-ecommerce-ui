@@ -28,6 +28,7 @@ export class CategoryFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       icon: ['', Validators.required],
+      color: ['#fff'],
     });
     this._editMode();
   }
@@ -42,6 +43,7 @@ export class CategoryFormComponent implements OnInit {
       id: this.currentCategoryId,
       name: this.form.value.name,
       icon: this.form.value.icon,
+      color: this.form.value.color,
     };
     console.log(category);
     if (this.editMode) {
@@ -53,31 +55,29 @@ export class CategoryFormComponent implements OnInit {
 
   private updateCategory(category: Category) {
     console.log(this.currentCategoryId);
-    this.categoryService
-      .updateCategory(category)
-      .subscribe(
-        (response) => {
-          if (response) {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Service Message',
-              detail: 'Category Updated',
-            });
-            timer(2000)
-              .toPromise()
-              .then(() => {
-                this.router.navigate(['categories']);
-              });
-          }
-        },
-        (error) => {
+    this.categoryService.updateCategory(category).subscribe(
+      (response) => {
+        if (response) {
           this.messageService.add({
-            severity: 'error',
-            summary: 'Service Error',
-            detail: 'Category Not Added',
+            severity: 'success',
+            summary: 'Service Message',
+            detail: 'Category Updated',
           });
+          timer(2000)
+            .toPromise()
+            .then(() => {
+              this.router.navigate(['categories']);
+            });
         }
-      );
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Service Error',
+          detail: 'Category Not Added',
+        });
+      }
+    );
   }
 
   private addCategory(category: Category) {
@@ -115,7 +115,12 @@ export class CategoryFormComponent implements OnInit {
       if (categoryId) {
         this.editMode = true;
         this.categoryService.getCategory(categoryId).subscribe((category) => {
-          // this.categoryForm.setValue(category.icon);
+          this.form.patchValue({
+            id: category.id,
+            name: category.name,
+            icon: category.icon,
+            color: category.color,
+          });
         });
       }
     });

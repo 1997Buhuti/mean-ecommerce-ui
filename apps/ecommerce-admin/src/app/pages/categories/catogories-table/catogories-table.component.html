@@ -22,20 +22,44 @@
       </div>
       <div class="p-grid">
         <div class="p-col-12">
-          <p-table [value]="categories" responsiveLayout="scroll">
+          <p-table
+            [value]="categories"
+            [paginator]="true"
+            [rows]="10"
+            responsiveLayout="scroll"
+          >
             <ng-template pTemplate="header">
               <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Icon</th>
+                <th pSortableColumn="name">
+                  Name <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="icon">
+                  Icon <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="color">
+                  Color <p-sortIcon field="code"></p-sortIcon>
+                </th>
                 <th></th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-category>
               <tr>
-                <td>{{ category._id }}</td>
                 <td>{{ category.name }}</td>
-                <td>{{ category.icon }}</td>
+                <td>
+                  <i
+                    style="font-size: 2rem"
+                    class="class"
+                    [ngClass]="'pi-' + category.icon"
+                  ></i>
+                  <!-- <fa-icon [icon]='fa-solid fa-camera'></fa-icon> -->
+                </td>
+                <td>
+                  <i
+                    class="pi pi-circle-on"
+                    style="font-size: 2rem"
+                    [ngStyle]="{ color: category.color }"
+                  ></i>
+                </td>
                 <td>
                   <p-button
                     icon="pi pi-trash"
