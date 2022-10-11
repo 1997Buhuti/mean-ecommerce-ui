@@ -2,39 +2,35 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-import { Products } from '../models/products';
+import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductsService {
+export class UsersService {
   apiURLProducts = environment.apiUrl + 'products';
   constructor(private http: HttpClient) {}
 
-  product$ = this.http.get<Products[]>(this.apiURLProducts).pipe(
-    tap((data) => console.log('categories', JSON.stringify(data))),
+  users$ = this.http.get<User[]>(this.apiURLProducts).pipe(
+    tap((data) => console.log('users', JSON.stringify(data))),
     catchError(this.handleError)
   );
 
-  getProduct(productId: string): Observable<Products> {
-    return this.http.get<Products>(`${this.apiURLProducts}/${productId}`).pipe(
-      tap((data) => console.log('categories', JSON.stringify(data))),
+  getUser(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.apiURLProducts}/${userId}`).pipe(
+      tap((data) => console.log('users', JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
-  createProduct(product: FormData): Observable<Products> {
-    return this.http.post<Products>(this.apiURLProducts, product);
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>(this.apiURLProducts, user);
   }
 
-  updateProduct(product: FormData, productId: string): Observable<Products> {
-    console.log('updateProduct');
-    return this.http.put<Products>(
-      `${this.apiURLProducts}/${productId}`,
-      product
-    );
+  updateUser(product: FormData, productId: string): Observable<User> {
+    return this.http.put<User>(`${this.apiURLProducts}/${productId}`, product);
   }
-  deleteCProduct(productId: string): Observable<Object> {
+  deleteUser(productId: string): Observable<Object> {
     return this.http.delete<any>(`${this.apiURLProducts}/${productId}`);
   }
   private handleError(err: HttpErrorResponse): Observable<never> {
