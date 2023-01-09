@@ -203,4 +203,6 @@ export class ProductsFormComponent implements OnInit {
       this.isImageEditClicked = true;
     }
   }
+
+  //This is comment 01
 }
