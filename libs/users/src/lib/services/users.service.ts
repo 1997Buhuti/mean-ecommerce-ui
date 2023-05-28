@@ -2,36 +2,36 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-import { User } from '../../models/user';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  apiURLProducts = environment.apiUrl + 'products';
+  apiURLUsers = environment.apiUrl + 'users';
   constructor(private http: HttpClient) {}
 
-  users$ = this.http.get<User[]>(this.apiURLProducts).pipe(
+  users$ = this.http.get<User[]>(this.apiURLUsers).pipe(
     tap((data) => console.log('users', JSON.stringify(data))),
     catchError(this.handleError)
   );
 
   getUser(userId: string): Observable<User> {
-    return this.http.get<User>(`${this.apiURLProducts}/${userId}`).pipe(
+    return this.http.get<User>(`${this.apiURLUsers}/${userId}`).pipe(
       tap((data) => console.log('users', JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.apiURLProducts, user);
+    return this.http.post<User>(this.apiURLUsers, user);
   }
 
-  updateUser(product: FormData, productId: string): Observable<User> {
-    return this.http.put<User>(`${this.apiURLProducts}/${productId}`, product);
+  updateUser(user: User, userId: string): Observable<User> {
+    return this.http.put<User>(`${this.apiURLUsers}/${userId}`, user);
   }
-  deleteUser(productId: string): Observable<Object> {
-    return this.http.delete<any>(`${this.apiURLProducts}/${productId}`);
+  deleteUser(userId: string): Observable<Object> {
+    return this.http.delete<any>(`${this.apiURLUsers}/${userId}`);
   }
   private handleError(err: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure

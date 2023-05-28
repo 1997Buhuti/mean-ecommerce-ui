@@ -1,1 +1,77 @@
-<p>user-list works!</p>
+<div class="user-page">
+  <p-confirmDialog header="Confirmation" width="425"></p-confirmDialog>
+  <p-card header="Users" subheader="List Of All Users">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-right">
+            <p-button
+              label="Create"
+              icon="pi pi-plus"
+              styleClass="p-button-success mr-1"
+              routerLink="form"
+            ></p-button>
+            <p-button
+              label="Cancel"
+              icon="pi pi-arrow-circle-left"
+              styleClass="p-button-secondary ml-1"
+              routerLink="form"
+            ></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12" *ngIf="users$ | async as users">
+          <p-table
+            [value]="users"
+            [paginator]="true"
+            [rows]="10"
+            responsiveLayout="scroll"
+          >
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="name">
+                  Name <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="Email">
+                  Email <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="IsAdmin">
+                  IsAdmin <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="Country">
+                  Country <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+              <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.isAdmin }}</td>
+                <td>{{ user.country }}</td>
+                <td>
+                  <p-button
+                    icon="pi pi-trash"
+                    styleClass="p-button-danger mr-1"
+                    (click)="deleteUser(user._id)"
+                    pTooltip="delete"
+                    tooltipPosition="bottom"
+                  ></p-button>
+                  <p-button
+                    icon="pi pi-pencil"
+                    styleClass="p-button-warning ml-1"
+                    (click)="updateUser(user._id)"
+                    pTooltip="edit"
+                    tooltipPosition="bottom"
+                  ></p-button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </p-card>
+</div>

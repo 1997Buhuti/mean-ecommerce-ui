@@ -38,6 +38,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { EditorModule } from 'primeng/editor';
+import { PasswordModule } from 'primeng/password';
 import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { UserFormComponent } from './pages/user/user-form/user-form.component';
 
@@ -110,6 +111,7 @@ const uxModules = [
   FileUploadModule,
   InputSwitchModule,
   EditorModule,
+  PasswordModule,
 ];
 @NgModule({
   declarations: [
