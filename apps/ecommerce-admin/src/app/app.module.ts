@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // components
@@ -113,30 +113,23 @@ const uxModules = [
   EditorModule,
   PasswordModule,
 ];
-@NgModule({
-  declarations: [
-    AppComponent,
-    NxWelcomeComponent,
-    DashboardComponent,
-    ShellComponent,
-    SidebarComponent,
-    CatogoriesTableComponent,
-    CategoryFormComponent,
-    ProductListComponent,
-    ProductsFormComponent,
-    UserListComponent,
-    UserFormComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-    HttpClientModule,
-    uxModules,
-  ],
-  providers: [MessageService, ConfirmationService],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NxWelcomeComponent,
+        DashboardComponent,
+        ShellComponent,
+        SidebarComponent,
+        CatogoriesTableComponent,
+        CategoryFormComponent,
+        ProductListComponent,
+        ProductsFormComponent,
+        UserListComponent,
+        UserFormComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
+        uxModules], providers: [MessageService, ConfirmationService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
   constructor() {
     library.add(fas);

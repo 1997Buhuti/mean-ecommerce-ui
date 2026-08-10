@@ -6,9 +6,10 @@ import { ConfirmationService } from 'primeng/api';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'mean-ecommerce-ui-catogories-table',
-  templateUrl: './catogories-table.component.html',
-  styleUrls: ['./catogories-table.component.scss'],
+    selector: 'mean-ecommerce-ui-catogories-table',
+    templateUrl: './catogories-table.component.html',
+    styleUrls: ['./catogories-table.component.scss'],
+    standalone: false
 })
 export class CatogoriesTableComponent implements OnInit {
   categories: Category[] = [];

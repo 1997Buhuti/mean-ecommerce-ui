@@ -4,9 +4,10 @@ import { User, UsersService } from '@mean-ecommerce-ui/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable, map } from 'rxjs';
 @Component({
-  selector: 'mean-ecommerce-ui-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+    selector: 'mean-ecommerce-ui-user-list',
+    templateUrl: './user-list.component.html',
+    styleUrls: ['./user-list.component.scss'],
+    standalone: false
 })
 export class UserListComponent implements OnInit {
   users$!: Observable<User[]>;

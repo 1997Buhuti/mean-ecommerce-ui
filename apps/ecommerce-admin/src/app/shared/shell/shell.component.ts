@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'admin-shell',
-  templateUrl: './shell.component.html',
-  styleUrls: ['./shell.component.scss'],
+    selector: 'admin-shell',
+    templateUrl: './shell.component.html',
+    styleUrls: ['./shell.component.scss'],
+    standalone: false
 })
 export class ShellComponent implements OnInit {
   constructor() {}

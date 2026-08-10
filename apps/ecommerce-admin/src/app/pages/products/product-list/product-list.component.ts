@@ -5,9 +5,10 @@ import { ConfirmationService } from 'primeng/api';
 import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'mean-ecommerce-ui-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss'],
+    selector: 'mean-ecommerce-ui-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.scss'],
+    standalone: false
 })
 export class ProductListComponent implements OnInit {
   errorMessage: any;

@@ -6,9 +6,10 @@ import { MessageService } from 'primeng/api';
 import { lastValueFrom, timer } from 'rxjs';
 
 @Component({
-  selector: 'mean-ecommerce-ui-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss'],
+    selector: 'mean-ecommerce-ui-user-form',
+    templateUrl: './user-form.component.html',
+    styleUrls: ['./user-form.component.scss'],
+    standalone: false
 })
 export class UserFormComponent implements OnInit {
   form!: FormGroup;

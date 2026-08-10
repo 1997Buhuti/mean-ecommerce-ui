@@ -6,10 +6,11 @@ import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
-  selector: 'mean-ecommerce-ui-category-form',
-  templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.scss'],
-  providers: [],
+    selector: 'mean-ecommerce-ui-category-form',
+    templateUrl: './category-form.component.html',
+    styleUrls: ['./category-form.component.scss'],
+    providers: [],
+    standalone: false
 })
 export class CategoryFormComponent implements OnInit {
   form!: FormGroup;

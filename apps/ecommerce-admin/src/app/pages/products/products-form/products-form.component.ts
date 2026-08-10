@@ -11,9 +11,10 @@ import { FileUpload } from 'primeng/fileupload';
 import { timer } from 'rxjs';
 
 @Component({
-  selector: 'mean-ecommerce-ui-products-form',
-  templateUrl: './products-form.component.html',
-  styleUrls: ['./products-form.component.scss'],
+    selector: 'mean-ecommerce-ui-products-form',
+    templateUrl: './products-form.component.html',
+    styleUrls: ['./products-form.component.scss'],
+    standalone: false
 })
 export class ProductsFormComponent implements OnInit {
   @ViewChild('fileUpload')

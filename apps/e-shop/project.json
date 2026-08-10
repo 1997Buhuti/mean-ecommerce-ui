@@ -1,4 +1,6 @@
 {
+  "name": "e-shop",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/e-shop/src",
   "prefix": "mean-ecommerce-ui",
@@ -59,10 +61,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "e-shop:build:production"
+          "buildTarget": "e-shop:build:production"
         },
         "development": {
-          "browserTarget": "e-shop:build:development"
+          "buildTarget": "e-shop:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -70,21 +72,17 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "e-shop:build"
+        "buildTarget": "e-shop:build"
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": ["apps/e-shop/**/*.ts", "apps/e-shop/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/e-shop"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/e-shop"],
       "options": {
-        "jestConfig": "apps/e-shop/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/e-shop/jest.config.ts"
       }
     }
   },

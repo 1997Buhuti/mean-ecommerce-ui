@@ -1,21 +1,19 @@
 {
+  "name": "products",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/products/src",
   "prefix": "mean-ecommerce-ui",
   "targets": {
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/products"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/products"],
       "options": {
-        "jestConfig": "libs/products/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/products/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": ["libs/products/**/*.ts", "libs/products/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     }
   },
   "tags": []
