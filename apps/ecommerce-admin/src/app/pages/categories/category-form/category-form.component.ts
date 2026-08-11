@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Category } from 'libs/products/src/lib/models/category';
 import { CategoriesService } from 'libs/products/src/lib/services/categories.service';
 import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { NgIf } from '@angular/common';
+import { ColorPickerModule } from 'primeng/colorpicker';
 @Component({
     selector: 'mean-ecommerce-ui-category-form',
     templateUrl: './category-form.component.html',
     styleUrls: ['./category-form.component.scss'],
     providers: [],
-    standalone: false
+    imports: [ToastModule, CardModule, ToolbarModule, ButtonModule, RouterLink, FormsModule, ReactiveFormsModule, NgIf, ColorPickerModule]
 })
 export class CategoryFormComponent implements OnInit {
   form!: FormGroup;

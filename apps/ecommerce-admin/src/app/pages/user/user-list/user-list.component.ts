@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { User, UsersService } from '@mean-ecommerce-ui/users';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, SharedModule } from 'primeng/api';
 import { Observable, map } from 'rxjs';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
 @Component({
     selector: 'mean-ecommerce-ui-user-list',
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss'],
-    standalone: false
+    imports: [ConfirmDialogModule, CardModule, ToolbarModule, ButtonModule, RouterLink, NgIf, TableModule, SharedModule, TooltipModule, AsyncPipe]
 })
 export class UserListComponent implements OnInit {
   users$!: Observable<User[]>;
