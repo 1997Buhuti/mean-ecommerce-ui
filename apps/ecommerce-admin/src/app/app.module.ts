@@ -113,9 +113,11 @@ const uxModules = [
   EditorModule,
   PasswordModule,
 ];
-@NgModule({ declarations: [
-        AppComponent,
-        NxWelcomeComponent,
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
+        uxModules, NxWelcomeComponent,
         DashboardComponent,
         ShellComponent,
         SidebarComponent,
@@ -124,12 +126,7 @@ const uxModules = [
         ProductListComponent,
         ProductsFormComponent,
         UserListComponent,
-        UserFormComponent,
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        BrowserAnimationsModule,
-        RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-        uxModules], providers: [MessageService, ConfirmationService, provideHttpClient(withInterceptorsFromDi())] })
+        UserFormComponent], providers: [MessageService, ConfirmationService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
   constructor() {
     library.add(fas);

@@ -1,20 +1,31 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   CategoriesService,
   Products,
   ProductsService,
 } from '@mean-ecommerce-ui/products';
-import { MessageService } from 'primeng/api';
-import { FileUpload } from 'primeng/fileupload';
+import { MessageService, SharedModule } from 'primeng/api';
+import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 import { timer } from 'rxjs';
+import { ToastModule } from 'primeng/toast';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { NgIf, NgFor } from '@angular/common';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { EditorModule } from 'primeng/editor';
+import { ImageModule } from 'primeng/image';
 
 @Component({
     selector: 'mean-ecommerce-ui-products-form',
     templateUrl: './products-form.component.html',
     styleUrls: ['./products-form.component.scss'],
-    standalone: false
+    imports: [ToastModule, CardModule, ToolbarModule, ButtonModule, RouterLink, FormsModule, ReactiveFormsModule, NgIf, InputNumberModule, DropdownModule, InputSwitchModule, InputTextareaModule, EditorModule, FileUploadModule, SharedModule, NgFor, ImageModule]
 })
 export class ProductsFormComponent implements OnInit {
   @ViewChild('fileUpload')

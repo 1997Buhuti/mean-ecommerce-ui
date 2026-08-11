@@ -24,24 +24,22 @@ export const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [
-    AppComponent,
-    NxWelcomeComponent,
-    ProductListComponent,
-    HomePageComponent,
-    HeaderComponent,
-    FooterComponent,
-    ProductFormComponent,
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes),
-    UiModule,
-    BrowserAnimationsModule,
-    AccordionModule,
-    ButtonModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(routes),
+        UiModule,
+        BrowserAnimationsModule,
+        AccordionModule,
+        ButtonModule,
+        NxWelcomeComponent,
+        ProductListComponent,
+        HomePageComponent,
+        HeaderComponent,
+        FooterComponent,
+        ProductFormComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

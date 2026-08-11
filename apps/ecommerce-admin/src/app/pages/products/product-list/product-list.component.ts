@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Products, ProductsService } from '@mean-ecommerce-ui/products';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, SharedModule } from 'primeng/api';
 import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { ImageModule } from 'primeng/image';
+import { TooltipModule } from 'primeng/tooltip';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'mean-ecommerce-ui-product-list',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.scss'],
-    standalone: false
+    imports: [ConfirmDialogModule, CardModule, ToolbarModule, ButtonModule, RouterLink, TableModule, SharedModule, ImageModule, TooltipModule, DatePipe]
 })
 export class ProductListComponent implements OnInit {
   errorMessage: any;

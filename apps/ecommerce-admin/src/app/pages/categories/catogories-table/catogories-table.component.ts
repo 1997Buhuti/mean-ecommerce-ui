@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService, Category } from '@mean-ecommerce-ui/products';
-import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { Router, RouterLink } from '@angular/router';
+import { MessageService, SharedModule } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { NgClass, NgStyle } from '@angular/common';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
     selector: 'mean-ecommerce-ui-catogories-table',
     templateUrl: './catogories-table.component.html',
     styleUrls: ['./catogories-table.component.scss'],
-    standalone: false
+    imports: [ConfirmDialogModule, CardModule, ToolbarModule, ButtonModule, RouterLink, TableModule, SharedModule, NgClass, NgStyle, TooltipModule]
 })
 export class CatogoriesTableComponent implements OnInit {
   categories: Category[] = [];

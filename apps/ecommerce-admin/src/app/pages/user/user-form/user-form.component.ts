@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { User, UsersService } from '@mean-ecommerce-ui/users';
 import { MessageService } from 'primeng/api';
 import { lastValueFrom, timer } from 'rxjs';
+import { ToastModule } from 'primeng/toast';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { NgIf } from '@angular/common';
+import { PasswordModule } from 'primeng/password';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @Component({
     selector: 'mean-ecommerce-ui-user-form',
     templateUrl: './user-form.component.html',
     styleUrls: ['./user-form.component.scss'],
-    standalone: false
+    imports: [ToastModule, CardModule, ToolbarModule, ButtonModule, RouterLink, FormsModule, ReactiveFormsModule, NgIf, PasswordModule, InputSwitchModule]
 })
 export class UserFormComponent implements OnInit {
   form!: FormGroup;
